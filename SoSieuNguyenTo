@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile("input.inp");
+//ofstream Writefile("output.out");
+bool SoSieuNguyenTo(int num){
+     while (num > 0){
+          if (num <= 1) return false;
+          for (int i = 2; i < num; i++) if (num%i == 0) return false;
+          num = num/10;   
+     }
+     return true;
+}
+int main(){
+     int n,dv;
+     cin >> n;
+     
+     dv = pow(10,n);
+
+     for (int i = dv/10; i < dv; i++){
+          if (SoSieuNguyenTo(i) == 1) cout << i << " ";
+     }
+
+     system ("exit");
+}
