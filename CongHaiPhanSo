@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile("input.inp");
+//ofstream Writefile("output.out");
+int MSChung(int ms1,int ms2){
+     int ts = 1;
+     if (ms1 > ms2){
+          while (ts < ms2){
+               int tmp1 = ms1;
+               tmp1 *= ts;
+               if (tmp1%ms2 == 0){
+                    return ms1;
+                    break;
+               }
+               ts++;
+          }
+     }
+     else{
+          while (ts < ms1){
+               int tmp1 = ms2;
+               tmp1 *= ts;
+               if (ms2%ms1 == 0){
+                    return ms2;
+                    break;
+               }
+               ts++;
+          }
+     }
+     return ms1*ms2;
+}
+void QuyDong(int &ts1, int &ts2,int ms1,int ms2, int msc){
+     ts1 *= msc/ms1;
+     ts2 *= msc/ms2;
+}
+void TinhTong(int ts1,int ms1,int ts2,int ms2){
+     if (ms1 != ms2){
+          int MsoChung = MSChung(ms1,ms2);
+          QuyDong(ts1,ts2,ms1,ms2,MsoChung);
+          cout << " = " << ts1 + ts2 << "/" << MsoChung;
+     }
+     else  cout << " = " << ts1+ts2 << "/" << ms1;
+}
+void TinhTong(long int tsA, long int tsB, long int msc){
+
+}
+int main(){
+     int tsA,msA,tsB,msB;
+
+     cout << "Nhap 2 phan so : tuso mauso" << endl;
+     cin >> tsA >> msA;
+     cin >> tsB >> msB;
+
+     if ((msA == 0) || (msB == 0)){
+          cout << "Mau so phai khac 0";
+          system ("exit");
+     }
+     else if ((tsA == 0) || (tsB == 0)){
+          if (tsA == 0) cout << tsA << "/" << msA << " + " << tsB << "/" << msB << " = " << tsB << "/" << msB;
+          else cout << tsA << "/" << msA << " + " << tsB << "/" << msB << " = " << tsA << "/" << msA;
+     } 
+     else {
+          cout << tsA << "/" << msA << " + " << tsB << "/" << msB;
+          TinhTong(tsA,msA,tsB,msB);
+     }
+     system ("exit");
+}
