@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+ifstream Readfile ("input.inp");
+ofstream Writefile ("output.out");
+
+void NhapMang(int Arr[], int k){
+     srand(time(NULL));
+     for (int i = 0; i < k; i++){
+          Arr[i] = rand()%10 - 5;
+     }
+}
+void XuatMang(int Arr[],int k){
+     for (int i = 0;  i < k; i++){
+          cout << Arr[i] << " ";
+     }
+}
+void TichMax(int Arr[],int k){
+     int max = Arr[0]*Arr[1];
+     for (int i = 1; i < k-1; i++){
+          for (int j = i+1; j < k; j++){
+               if (max < Arr[i]*Arr[j]) max =  Arr[i]*Arr[j];
+          }
+     }
+     cout << max;
+}
+
+int main(){
+     int n;
+     cin >> n;
+     
+     int arr[n];
+     NhapMang(arr,n);
+     XuatMang(arr,n);    
+     cout << endl << "Tong T lon nhat la: ";
+     TichMax(arr,n);
+     system ("exit");
+}
