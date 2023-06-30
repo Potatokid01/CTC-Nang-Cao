@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile ("input.inp");
+//ofstream Writefile ("output.out");
+
+
+int DemKiTu(string a, char b){
+     int dem = 0;
+     for (int i = 0; i < a.length(); i++){
+          if (a[i] == b) dem++;
+     }
+     return dem;
+}
+void KiTuLapNhieuNhat(string a){
+     int max = 0;
+     int vt = 0;
+     for (int i = 0; i < a.length(); i++){
+          if ((a[i] >= 'a') && (a[i] <= 'z')){
+               if (DemKiTu(a,a[i]) > max){
+                    max = DemKiTu(a,a[i]);
+                    vt = i;
+               }
+          }
+          else{
+               cout << "Xau chua ki tu khac a - z";
+               break;
+               system ("exit");
+          } 
+     }
+     cout << a[vt] << endl << max;
+}
+int main(){
+     string s;
+     cin >> s;
+     if (s.length() <= 10e6){
+          KiTuLapNhieuNhat(s);
+     }
+     else system ("exit");
+}
