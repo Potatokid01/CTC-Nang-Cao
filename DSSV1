@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile ("input.inp");
+//ofstream Writefile ("output.out");
+
+struct SinhVien {
+     int stt;
+     string HoVaTen;
+     int DiemCS;
+     int DiemCN;
+} sv[50];
+void NhapThongTinSinhVien(int k){
+     for (int i = 1; i <= k; i++){
+          sv[i].stt = i;
+          cout << "Ho ten sinh vien " << i << ": ";
+          getline(cin, sv[i].HoVaTen);
+          cout << "Diem CS | Diem CN: ";
+          cin >> sv[i].DiemCS >> sv[i].DiemCN;
+          cin.ignore(255,'\n');
+     }
+}
+void XuatThongTinSinhVien(int k){
+     cout << setw(40) << "DANH SACH SINH VIEN DA NHAP" << endl;
+     for (int i = 1; i <= k; i++){
+          cout << "STT: " << sv[i].stt << " | Sinh vien: " << setw (25) << left << sv[i].HoVaTen << " | DiemCS: " << sv[i].DiemCS << " Diem CN: " << sv[i].DiemCN << endl; 
+     }
+}
+void SinhVienDauTotNghiep(int k){
+     cout << setw(45) << "DANH SACH SINH VIEN DAU TOT NGHIEP" << endl;
+     for (int i = 1; i <= k; i++){
+          if ((sv[i].DiemCS >= 5) && (sv[i].DiemCN >= 5))  cout << "STT: " << sv[i].stt << " | Sinh vien: " << setw(25) << left << sv[i].HoVaTen  << " | DiemCS: " << sv[i].DiemCS << " Diem CN: " << sv[i].DiemCN << endl;  
+     }
+}
+
+int main(){
+     int k;
+     cout << "Bao nhieu sinh vien?: ";
+     cin >> k;
+
+     cin.ignore(255,'\n');
+     NhapThongTinSinhVien(k);
+     XuatThongTinSinhVien(k);
+     SinhVienDauTotNghiep(k);
+
+     return 0;
+}
