@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile ("input.inp");
+//ofstream Writefile ("output.out");
+
+struct HocSinhThiTotNghiep {
+     string SBD;
+     string HoDem;
+     string Ten;
+     float Toan;
+     float Van;
+     float Anh;
+     float Tong;
+     string KetQua;
+} hs[50];
+void NhapDiemHocSinh(int k){
+     for (int i = 1; i <= k; i++){
+          cout << "SBD hoc sinh " << i << ": ";
+          getline(cin,hs[i].SBD);
+          cout << "Ho dem HS " << i << ": ";
+          getline(cin, hs[i].HoDem);
+          cout << "Ten: ";
+          getline (cin,hs[i].Ten);
+          cout << "Diem Toan | Diem Van | Diem Anh: ";
+          cin >> hs[i].Toan >> hs[i].Van >> hs[i].Anh;
+          hs[i].Tong = (hs[i].Toan*2) + (hs[i].Van*2) + hs[i].Anh;
+          if ((hs[i].Tong >= 20.0) && ((hs[i].Toan > 0.0) && (hs[i].Van > 0.0) && (hs[i].Anh > 0.0))) hs[i].KetQua = "Dau";
+          else hs[i].KetQua = "Rot";
+          cin.ignore(255,'\n');
+     }
+}
+void swap (HocSinhThiTotNghiep hs[], int a, int b){
+     HocSinhThiTotNghiep temp = hs[a];
+     hs[b] = hs[a];
+     hs[a] = temp;
+
+}
+void  SapXepTenHS(int k){
+     int arr[k];
+     for (int i = 1; i <= k-1; i++){
+          int pos;
+          char temp = hs[i].Ten[0];
+          cout << temp << endl;
+          for (int j = i+1; j <= k; j++){
+               char temp1 = hs[j+1].Ten[0];
+               cout << temp1 << endl;
+               if (temp > hs[j].Ten[0]){
+                    temp = hs[j].Ten[0];
+                    pos = j;
+               }
+          arr[i-1] = pos;
+          swap(hs, i, pos);
+          }
+     }
+     for (int i = 0; i < k; i++) cout << arr[i] << " ";
+}
+void XuatDanhSachHocSinh(int k){
+     cout << setw(40) << "DANH SACH DIEM HOC SINH DA NHAP" << endl;
+     for (int i = 1; i <= k; i++){
+          cout << "SBD: " << setw(10) << left << hs[i].SBD << " | Ho ten HS: " << left << hs[i].HoDem << " " << hs[i].Ten << setw(5) << " | Diem Toan: " << hs[i].Toan << " Diem Van: " << hs[i].Van << " Diem Anh: " << setw(5) << hs[i].Anh << " | Tong Diem: " << hs[i].Tong << " | Ket Qua: " << hs[i].KetQua << endl; 
+     }
+}
+// void SinhVienDauTotNghiep(int k){
+//      cout << setw(45) << "DANH SACH SINH VIEN DAU TOT NGHIEP" << endl;
+//      for (int i = 1; i <= k; i++){
+//           if ((hs[i].DiemCS >= 5) && ([i].DiemCN >= 5))  cout << "STT: " << sv[i].stt << " | Ho ten HS: " << setw(25) << left << sv[i].HoVaTen  << " | DiemCS: " << sv[i].DiemCS << " Diem CN: " << sv[i].DiemCN << endl;  
+//      }
+// }
+
+int main(){
+     int k;
+     cout << "Bao nhieu hoc sinh?: ";
+     cin >> k;
+
+     cin.ignore(255,'\n');
+     NhapDiemHocSinh(k);
+     XuatDanhSachHocSinh(k);
+     SapXepTenHS(k);
+     return 0;
+}
