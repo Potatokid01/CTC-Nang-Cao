@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile ("input.inp");
+//ofstream Writefile ("output.out");
+bool check = false;
+void XuatMang(int arr[], int k){
+     for (int i = 1; i <= k; i++){
+          cout << arr[i];
+     }
+     cout << endl;
+}
+void FillZero(int arr[],int j, int k){
+     for (int i = j; i <=k; i++){
+          arr[i] = 0;
+     }
+}
+void XuLy(int arr[],int k){
+     int i = k;
+     while (arr[i] == 1 && i > 0){
+          i--;
+     }
+     if (i == 0) check = true;
+     else {
+          arr[i] = 1;
+          FillZero(arr,i+1,k);
+     }
+}
+void SinhNhiPhan(int arr[], int k){
+     
+     while (!check){
+          XuatMang(arr,k);
+          XuLy(arr,k);
+     }
+}
+int main(){ 
+     int n;
+     cin >> n;
+     int mang[n+1] = { 0 };
+     SinhNhiPhan(mang,n);
+
+     return 0;
+}
