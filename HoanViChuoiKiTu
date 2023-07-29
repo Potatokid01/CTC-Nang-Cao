@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//ifstream Readfile ("input.inp");
+//ofstream Writefile ("output.out");
+int N, Used[100];
+string xau;
+int dem = 0;
+int Mang[100];
+void XuatChuoi(){
+     cout << "{";
+     for (int i = 1; i <= N; i++){
+          cout << xau[Mang[i]];
+     }
+     cout << "}" << endl;;
+}
+void DeQuyLui (int i){
+     for (int j = 1; j <= N; j++){
+          if (Used[j] == 0){
+               Mang[i] = j;
+               Used[j] = 1;
+               if (i == N) {
+                    XuatChuoi();
+                    dem++;
+               }
+               else DeQuyLui(i+1);
+               Used[j] = 0;
+          } 
+     }
+}
+int main(){ 
+     getline (cin, xau);
+     xau = '0' + xau;
+     N = xau.length()-1;
+     DeQuyLui(1);
+     cout << "Co " << dem << " cach";
+     return 0;
+}
